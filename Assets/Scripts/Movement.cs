@@ -57,6 +57,7 @@ public class Movement : MonoBehaviour
         }
         center.transform.position = player.transform.position;
         input = true;
+        //Debug.Log("up");
     }
 
     IEnumerator moveDown()
