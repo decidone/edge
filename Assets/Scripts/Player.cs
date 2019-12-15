@@ -16,10 +16,19 @@ public class Player : MonoBehaviour
         
     }
 
+    // 사용안함
     // 플레이어가 카메라 시점에서 벗어났을 때
-    private void OnBecameInvisible()
+    //private void OnBecameInvisible()
+    //{
+    //    // Destroy(this.gameObject);
+    //    Debug.Log("안보여");
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        // Destroy(this.gameObject);
-        Debug.Log("안보여");
+        if (collision.gameObject.tag == "Wall")
+        {
+            Debug.Log("바닥에 닿음");
+        }
     }
 }
