@@ -16,9 +16,10 @@ public class Player : MonoBehaviour
         
     }
 
+    // 플레이어가 카메라 시점에서 벗어났을 때
     private void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
         Debug.Log("안보여");
     }
 }
