@@ -5,10 +5,11 @@ using UnityEngine;
 public class CheckMainCamera : MonoBehaviour
 {
     public GameObject target;
+    public static Vector3 respawn;
     // Start is called before the first frame update
     void Start()
     {
-        
+        respawn = new Vector3(0, 2, 0);
     }
 
     // Update is called once per frame
@@ -17,7 +18,7 @@ public class CheckMainCamera : MonoBehaviour
         if (!CheckCamera(target))
         {
             Debug.Log("카메라 밖으로 나갔어요");
-            target.transform.position = new Vector3(0, 2, 0);
+            target.transform.position = respawn;
         }
         //Debug.Log(CheckCamera(target));
     }
