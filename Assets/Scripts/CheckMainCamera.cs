@@ -17,6 +17,7 @@ public class CheckMainCamera : MonoBehaviour
         if (!CheckCamera(target))
         {
             Debug.Log("카메라 밖으로 나갔어요");
+            target.transform.position = new Vector3(0, 2, 0);
         }
         //Debug.Log(CheckCamera(target));
     }
