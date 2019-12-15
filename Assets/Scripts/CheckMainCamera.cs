@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckMainCamera : MonoBehaviour
 {
     public GameObject target;
-    public static Vector3 respawn;
+    public Vector3 respawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,8 @@ public class CheckMainCamera : MonoBehaviour
     // 기존의 카메라 밖으로 나간 플레이어 처리방식에는 문제가 좀 있어서 이 함수로 대체
     public bool CheckCamera(GameObject target)
     {
-        Camera cam = this.gameObject.GetComponent<Camera>();
+        //Camera cam = this.gameObject.GetComponent<Camera>();
+        Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         Vector3 screenPoint = cam.WorldToViewportPoint(target.transform.position);
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
