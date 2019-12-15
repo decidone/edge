@@ -14,14 +14,16 @@ public class Movement : MonoBehaviour
     public GameObject rightUp;
     public int step = 9;
     private Vector3 lastPos;
-    private bool ismoving;
+
+    // 움직이고 난 후 아래 블록이 있는지 검사
+    public bool isFloating;
 
     public float speed = (float)0.01;
     bool input = true;
     // Start is called before the first frame update
     void Start()
     {
-        ismoving = false;
+        isFloating = false;
     }
 
     void FixedUpdate()
@@ -36,16 +38,28 @@ public class Movement : MonoBehaviour
         //    Debug.Log("뭔가 있음");
         //}
 
-        CheckUnderBlock(center.transform.position + new Vector3(0, -1.1f, 0), 0.1f);
+        CheckUnderBlock(center.transform.position + new Vector3(0, -1.2f, 0), 0.1f);
     }
 
     void CheckUnderBlock(Vector3 center, float radius)
     {
         Collider[] Colliders = Physics.OverlapSphere(center, radius);
         int i = 0;
+        if (Colliders.Length == 0)
+        {
+            isFloating = true;
+        }
         while (i < Colliders.Length)
         {
             Debug.Log(Colliders[i].tag);
+            if(Colliders[i].tag == "Wall")
+            {
+                isFloating = false;
+            }
+            else
+            {
+                isFloating = true;
+            }
             //hitColliders[i].SendMessage("AddDamage");
             i++;
         }
@@ -54,7 +68,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input == true && ismoving == false)
+        if (input == true && isFloating == false)
         {
             if (Input.GetKey(KeyCode.UpArrow)){
                 StartCoroutine("moveUp");
@@ -147,18 +161,5 @@ public class Movement : MonoBehaviour
         Physics.gravity = new Vector3(0, -9.8f, 0);
         center.transform.position = player.transform.position;
         input = true;
-    }
-
-    public void CheckChangePosition()
-    {
-        if(lastPos != player.transform.localPosition)
-        {
-            ismoving = true;
-            lastPos = player.transform.localPosition;
-        }
-        else
-        {
-            ismoving = false;
-        }
     }
 }
