@@ -39,7 +39,12 @@ public class Movement : MonoBehaviour
         //{
         //    Debug.Log("뭔가 있음");
         //}
-
+        if (input == true)
+        {
+            center.transform.position = player.transform.position;
+            //Debug.Log("떨어져요");
+            //StartCoroutine("fall");
+        }
         CheckUnderBlock(center.transform.position + new Vector3(0, -1.2f, 0), 0.1f);
     }
 
@@ -61,11 +66,12 @@ public class Movement : MonoBehaviour
             else
             {
                 isFloating = true;
-                if(input == true)
-                {
-                    center.transform.position = player.transform.position;
-                    //StartCoroutine("fall");
-                }
+                //if(input == true)
+                //{
+                //    center.transform.position = player.transform.position;
+                //    Debug.Log("떨어져요");
+                //    //StartCoroutine("fall");
+                //}
             }
             //hitColliders[i].SendMessage("AddDamage");
             i++;
