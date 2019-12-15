@@ -26,16 +26,34 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 r = transform.TransformDirection(Vector3.right);
+        //Vector3 r = transform.TransformDirection(Vector3.right);
 
-        if (Physics.Raycast(center.transform.position + new Vector3(0.5f, 0, 0), r, 1))
-            print("There is something in front of the object!");
+        //if (Physics.Raycast(center.transform.position + new Vector3(0.5f, 0, 0), r, 1))
+        //    print("There is something in front of the object!");
+
+        //if (Physics.CheckSphere(center.transform.position + new Vector3(0, -1.1f, 0), 0.1f))
+        //{
+        //    Debug.Log("뭔가 있음");
+        //}
+
+        CheckUnderBlock(center.transform.position + new Vector3(0, -1.1f, 0), 0.1f);
+    }
+
+    void CheckUnderBlock(Vector3 center, float radius)
+    {
+        Collider[] Colliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < Colliders.Length)
+        {
+            Debug.Log(Colliders[i].tag);
+            //hitColliders[i].SendMessage("AddDamage");
+            i++;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (input == true && ismoving == false)
         {
             if (Input.GetKey(KeyCode.UpArrow)){
@@ -117,6 +135,7 @@ public class Movement : MonoBehaviour
         center.transform.position = player.transform.position;
         input = true;
     }
+
     IEnumerator moveRightUp()
     {
         for (int i = 0; i < (90 / (step / 2f)); i++)
@@ -129,6 +148,7 @@ public class Movement : MonoBehaviour
         center.transform.position = player.transform.position;
         input = true;
     }
+
     public void CheckChangePosition()
     {
         if(lastPos != player.transform.localPosition)
