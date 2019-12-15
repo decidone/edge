@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // 사용안함
@@ -24,11 +24,18 @@ public class Player : MonoBehaviour
     //    Debug.Log("안보여");
     //}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Wall")
-        {
-            Debug.Log("바닥에 닿음");
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Wall")
+    //    {
+    //        //Debug.Log("바닥에 닿음");
+    //    }
+    //}
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Wall")
+    //    {
+    //        //Debug.Log("바닥에 닿음");
+    //    }
+    //}
 }

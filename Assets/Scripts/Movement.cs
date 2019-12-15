@@ -11,20 +11,32 @@ public class Movement : MonoBehaviour
     public GameObject down;
     public GameObject left;
     public GameObject right;
+    public GameObject rightUp;
     public int step = 9;
+    private Vector3 lastPos;
+    private bool ismoving;
 
     public float speed = (float)0.01;
     bool input = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ismoving = false;
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 r = transform.TransformDirection(Vector3.right);
+
+        if (Physics.Raycast(center.transform.position + new Vector3(0.5f, 0, 0), r, 1))
+            print("There is something in front of the object!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(input == true)
+
+        if (input == true && ismoving == false)
         {
             if (Input.GetKey(KeyCode.UpArrow)){
                 StartCoroutine("moveUp");
@@ -45,6 +57,11 @@ public class Movement : MonoBehaviour
                 StartCoroutine("moveRight");
                 input = false;
             }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                StartCoroutine("moveRightUp");
+                input = false;
+            }
         }
     }
 
@@ -52,9 +69,11 @@ public class Movement : MonoBehaviour
     {
         for(int i=0; i<(90/step); i++)
         {
+            Physics.gravity = new Vector3(0, 0, 0);
             player.transform.RotateAround(up.transform.position, Vector3.right, step);
             yield return new WaitForSeconds(speed);
         }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         center.transform.position = player.transform.position;
         input = true;
         //Debug.Log("up");
@@ -64,9 +83,11 @@ public class Movement : MonoBehaviour
     {
         for (int i = 0; i < (90 / step); i++)
         {
+            Physics.gravity = new Vector3(0, 0, 0);
             player.transform.RotateAround(down.transform.position, Vector3.left, step);
             yield return new WaitForSeconds(speed);
         }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         center.transform.position = player.transform.position;
         input = true;
     }
@@ -75,9 +96,11 @@ public class Movement : MonoBehaviour
     {
         for (int i = 0; i < (90 / step); i++)
         {
+            Physics.gravity = new Vector3(0, 0, 0);
             player.transform.RotateAround(left.transform.position, Vector3.forward, step);
             yield return new WaitForSeconds(speed);
         }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         center.transform.position = player.transform.position;
         input = true;
     }
@@ -86,10 +109,36 @@ public class Movement : MonoBehaviour
     {
         for (int i = 0; i < (90 / step); i++)
         {
+            Physics.gravity = new Vector3(0, 0, 0);
             player.transform.RotateAround(right.transform.position, Vector3.back, step);
             yield return new WaitForSeconds(speed);
         }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         center.transform.position = player.transform.position;
         input = true;
+    }
+    IEnumerator moveRightUp()
+    {
+        for (int i = 0; i < (90 / (step / 2f)); i++)
+        {
+            Physics.gravity = new Vector3(0, 0, 0);
+            player.transform.RotateAround(rightUp.transform.position, Vector3.back, step);
+            yield return new WaitForSeconds(speed * 2f);
+        }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
+        center.transform.position = player.transform.position;
+        input = true;
+    }
+    public void CheckChangePosition()
+    {
+        if(lastPos != player.transform.localPosition)
+        {
+            ismoving = true;
+            lastPos = player.transform.localPosition;
+        }
+        else
+        {
+            ismoving = false;
+        }
     }
 }
