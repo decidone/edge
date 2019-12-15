@@ -130,11 +130,23 @@ public class Movement : MonoBehaviour
     {
         if (CheckBlock(center.transform.position + new Vector3(0, 0, 1.2f), 0.1f))
         {
-            for (int i = 0; i < (90 / (step / 2f)); i++)
+            if (CheckBlock(center.transform.position + new Vector3(0, 2.0f, 1.2f), 0.1f))
             {
-                Physics.gravity = new Vector3(0, 0, 0);
-                player.transform.RotateAround(forwardUp.transform.position, Vector3.right, step);
-                yield return new WaitForSeconds(speed * 2f);
+                for (int i = 0; i < (90 / step); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(forwardUp.transform.position, Vector3.right, step);
+                    yield return new WaitForSeconds(speed);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < (90 / (step / 2f)); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(forwardUp.transform.position, Vector3.right, step);
+                    yield return new WaitForSeconds(speed * 2f);
+                }
             }
         }
         else
@@ -157,11 +169,23 @@ public class Movement : MonoBehaviour
     {
         if (CheckBlock(center.transform.position + new Vector3(0, 0, -1.2f), 0.1f))
         {
-            for (int i = 0; i < (90 / (step / 2f)); i++)
+            if (CheckBlock(center.transform.position + new Vector3(0, 2.0f, -1.2f), 0.1f))
             {
-                Physics.gravity = new Vector3(0, 0, 0);
-                player.transform.RotateAround(backwardUp.transform.position, Vector3.left, step);
-                yield return new WaitForSeconds(speed * 2f);
+                for (int i = 0; i < (90 / step); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(backwardUp.transform.position, Vector3.left, step);
+                    yield return new WaitForSeconds(speed);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < (90 / (step / 2f)); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(backwardUp.transform.position, Vector3.left, step);
+                    yield return new WaitForSeconds(speed * 2f);
+                }
             }
         }
         else
@@ -183,12 +207,24 @@ public class Movement : MonoBehaviour
     {
         if (CheckBlock(center.transform.position + new Vector3(-1.2f, 0, 0), 0.1f))
         {
-            for (int i = 0; i < (90 / (step / 2f)); i++)
+            if (CheckBlock(center.transform.position + new Vector3(-1.2f, 2.0f, 0), 0.1f))
             {
-                Physics.gravity = new Vector3(0, 0, 0);
-                player.transform.RotateAround(leftUp.transform.position, Vector3.forward, step);
-                yield return new WaitForSeconds(speed * 2f);
+                for (int i = 0; i < (90 / step); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(leftUp.transform.position, Vector3.forward, step);
+                    yield return new WaitForSeconds(speed);
+                }
             }
+            else
+            {
+                for (int i = 0; i < (90 / (step / 2f)); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(leftUp.transform.position, Vector3.forward, step);
+                    yield return new WaitForSeconds(speed * 2f);
+                }
+            }            
         }
         else
         {
@@ -209,11 +245,23 @@ public class Movement : MonoBehaviour
     {
         if(CheckBlock(center.transform.position + new Vector3(1.2f, 0, 0), 0.1f))
         {
-            for (int i = 0; i < (90 / (step / 2f)); i++)
+            if (CheckBlock(center.transform.position + new Vector3(1.2f, 2.0f, 0), 0.1f))
             {
-                Physics.gravity = new Vector3(0, 0, 0);
-                player.transform.RotateAround(rightUp.transform.position, Vector3.back, step);
-                yield return new WaitForSeconds(speed * 2f);
+                for (int i = 0; i < (90 / step); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(rightUp.transform.position, Vector3.back, step);
+                    yield return new WaitForSeconds(speed);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < (90 / (step / 2f)); i++)
+                {
+                    Physics.gravity = new Vector3(0, 0, 0);
+                    player.transform.RotateAround(rightUp.transform.position, Vector3.back, step);
+                    yield return new WaitForSeconds(speed * 2f);
+                }
             }
         }
         else
