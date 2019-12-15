@@ -2097,6 +2097,16 @@ PrefabInstance:
       propertyPath: rightUp
       value: 
       objectReference: {fileID: 1330453149}
+    - target: {fileID: 8889879964136873600, guid: 49d86c7b7f8acf7438c654e631a581e7,
+        type: 3}
+      propertyPath: gravity.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889879964136873601, guid: 49d86c7b7f8acf7438c654e631a581e7,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 8889879964136873605, guid: 49d86c7b7f8acf7438c654e631a581e7,
         type: 3}
       propertyPath: m_LocalPosition.x
