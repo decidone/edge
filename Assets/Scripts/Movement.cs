@@ -17,13 +17,15 @@ public class Movement : MonoBehaviour
 
     // 움직이고 난 후 아래 블록이 있는지 검사
     public bool isFloating;
+    public float fallingSpeed = -0.1f;
 
     public float speed = (float)0.01;
-    bool input = true;
+    bool input;
     // Start is called before the first frame update
     void Start()
     {
         isFloating = false;
+        input = true;
     }
 
     void FixedUpdate()
@@ -41,9 +43,9 @@ public class Movement : MonoBehaviour
         CheckUnderBlock(center.transform.position + new Vector3(0, -1.2f, 0), 0.1f);
     }
 
-    void CheckUnderBlock(Vector3 center, float radius)
+    void CheckUnderBlock(Vector3 centerPoint, float radius)
     {
-        Collider[] Colliders = Physics.OverlapSphere(center, radius);
+        Collider[] Colliders = Physics.OverlapSphere(centerPoint, radius);
         int i = 0;
         if (Colliders.Length == 0)
         {
@@ -59,6 +61,11 @@ public class Movement : MonoBehaviour
             else
             {
                 isFloating = true;
+                if(input == true)
+                {
+                    center.transform.position = player.transform.position;
+                    //StartCoroutine("fall");
+                }
             }
             //hitColliders[i].SendMessage("AddDamage");
             i++;
@@ -95,6 +102,21 @@ public class Movement : MonoBehaviour
                 input = false;
             }
         }
+    }
+
+    IEnumerator fall()
+    {
+        for (int i = 0; i < (10); i++)
+        {
+            player.transform.TransformPoint(new Vector3(0, -0.1f, 0));
+            //Physics.gravity = new Vector3(0, 0, 0);
+            //player.transform.(up.transform.position, Vector3.right, step);
+            yield return new WaitForSeconds(speed);
+        }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
+        center.transform.position = player.transform.position;
+        input = true;
+        //Debug.Log("up");
     }
 
     IEnumerator moveUp()
