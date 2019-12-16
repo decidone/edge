@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator moveUp()
+    IEnumerator moveLeft()
     {
         if (CheckBlock(center.transform.position + new Vector3(0, 0, 1.2f), 0.1f))
         {
@@ -172,7 +172,7 @@ public class Movement : MonoBehaviour
         input = true;
     }
 
-    IEnumerator moveDown()
+    IEnumerator moveRight()
     {
         if (CheckBlock(center.transform.position + new Vector3(0, 0, -1.2f), 0.1f))
         {
@@ -210,7 +210,7 @@ public class Movement : MonoBehaviour
         input = true;
     }
 
-    IEnumerator moveLeft()
+    IEnumerator moveDown()
     {
         if (CheckBlock(center.transform.position + new Vector3(-1.2f, 0, 0), 0.1f))
         {
@@ -248,7 +248,7 @@ public class Movement : MonoBehaviour
         input = true;
     }
 
-    IEnumerator moveRight()
+    IEnumerator moveUp()
     {
         if(CheckBlock(center.transform.position + new Vector3(1.2f, 0, 0), 0.1f))
         {
@@ -289,8 +289,8 @@ public class Movement : MonoBehaviour
     public void CheckChangePosition()
     {
         timer += Time.deltaTime;
-        // 0.05초 전과 현재 위치를 비고
-        if (timer >= 0.05f)
+        // 0.02초 전과 현재 위치를 비고
+        if (timer >= 0.02f)
         {
             if (lastPos != player.transform.localPosition)
             {
