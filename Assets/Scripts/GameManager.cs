@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject target;
-    public Vector3 respawn;
+    public static Vector3 respawn;
     // Start is called before the first frame update
     void Start()
     {

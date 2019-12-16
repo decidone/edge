@@ -7,12 +7,22 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "SavePoint")
+        {
+            GameManager.respawn = other.gameObject.transform.position;
+            Debug.Log(other.gameObject.transform.position);
+            Destroy(other.gameObject);
+        }
 
     }
 
