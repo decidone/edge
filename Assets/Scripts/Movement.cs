@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -144,6 +145,11 @@ public class Movement : MonoBehaviour
                     StartCoroutine("moveRight");
                 }
             }
+        }
+        // reset
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
