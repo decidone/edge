@@ -6,7 +6,7 @@ public class RotateColor : MonoBehaviour
 {
     public float time;
     float colorstep;
-    Color[] colors = new Color[4];
+    Color[] colors = new Color[6];
     int i;
 
     // Start is called before the first frame update
@@ -14,8 +14,10 @@ public class RotateColor : MonoBehaviour
     {
         colors[0] = Color.red;
         colors[1] = Color.yellow;
-        colors[2] = Color.cyan;
-        colors[3] = Color.red;
+        colors[2] = Color.green;
+        colors[3] = Color.cyan;
+        colors[4] = Color.magenta;
+        colors[5] = Color.red;
     }
 
     // Update is called once per frame
