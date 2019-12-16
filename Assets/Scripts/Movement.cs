@@ -45,7 +45,6 @@ public class Movement : MonoBehaviour
         {
             center.transform.position = player.transform.position;
         }
-        
     }
 
     void CheckUnderBlock(Vector3 centerPoint, float radius)
@@ -61,6 +60,13 @@ public class Movement : MonoBehaviour
             // Debug.Log(Colliders[i].tag);
             if(Colliders[i].tag == "Wall")
             {
+                isFloating = false;
+            }
+            else if (Colliders[i].tag == "Temp")
+            {
+                //Destroy(Colliders[i].gameObject, 2f);
+                //Colliders[i].gameObject.SetActive(false);
+                StartCoroutine(tempBlock(Colliders[i].gameObject));
                 isFloating = false;
             }
             else if(Colliders[i].tag == "EndPoint")
@@ -139,6 +145,18 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+    }
+
+    // 블럭이 사라지고 잠시 후 다시 생성
+    IEnumerator tempBlock(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.GetComponent<Renderer>().material.color = Color.gray;
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(3.0f);
+        gameObject.GetComponent<Renderer>().material.color = Color.black;
+        gameObject.SetActive(true);
     }
 
     IEnumerator moveLeft()
