@@ -8,6 +8,7 @@ TagManager:
   - EndPoint
   - SavePoint
   - Temp
+  - Button
   layers:
   - Default
   - TransparentFX
