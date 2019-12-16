@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public GameObject target;
     public static Vector3 respawn;
+    public GameObject WinUI;
     // Start is called before the first frame update
     void Start()
     {
         respawn = new Vector3(0, 2, 0);
+        WinUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,6 +21,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("카메라 밖으로 나갔어요");
             target.transform.position = respawn;
+        }
+        if (Movement.isGameOver)
+        {
+            WinUI.SetActive(true);
         }
         //Debug.Log(CheckCamera(target));
     }

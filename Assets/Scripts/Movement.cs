@@ -16,9 +16,10 @@ public class Movement : MonoBehaviour
     public GameObject rightUp;
     public int step = 9;
     public Vector3 gravity;
-    
     public float fallingSpeed = -0.1f;
     public float speed = (float)0.01;
+
+    public static bool isGameOver;
 
     bool input;         // 플레이어의 이동모션이 끝났는지 체크
     bool ismoving;      // 큐브가 움직이고 있는지 체크
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
         isFloating = false;
         input = true;
         ismoving = false;
+        isGameOver = false;
     }
 
     void FixedUpdate()
@@ -60,6 +62,11 @@ public class Movement : MonoBehaviour
             if(Colliders[i].tag == "Wall")
             {
                 isFloating = false;
+            }
+            else if(Colliders[i].tag == "EndPoint")
+            {
+                isGameOver = true;
+                isFloating = true;
             }
             else
             {
