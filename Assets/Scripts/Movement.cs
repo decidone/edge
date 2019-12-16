@@ -100,29 +100,37 @@ public class Movement : MonoBehaviour
         if (input == true && isFloating == false && ismoving == false)
         {
             if (Input.GetKey(KeyCode.UpArrow)){
-                StartCoroutine("moveUp");
-                input = false;
+                // 동시 키입력을 방지하기 위해 한번 더 input을 체크
+                if(input == true)
+                {
+                    input = false;
+                    StartCoroutine("moveUp");
+                }
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                StartCoroutine("moveDown");
-                input = false;
+                if (input == true)
+                {
+                    input = false;
+                    StartCoroutine("moveDown");
+                }
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                StartCoroutine("moveLeft");
-                input = false;
+                if (input == true)
+                {
+                    input = false;
+                    StartCoroutine("moveLeft");
+                }
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                StartCoroutine("moveRight");
-                input = false;
+                if (input == true)
+                {
+                    input = false;
+                    StartCoroutine("moveRight");
+                }
             }
-            //if (Input.GetKey(KeyCode.Space))
-            //{
-            //    StartCoroutine("moveRightUp");
-            //    input = false;
-            //}
         }
     }
 
@@ -162,7 +170,6 @@ public class Movement : MonoBehaviour
         Physics.gravity = gravity;
         center.transform.position = player.transform.position;
         input = true;
-        //Debug.Log("up");
     }
 
     IEnumerator moveDown()
@@ -278,19 +285,6 @@ public class Movement : MonoBehaviour
         center.transform.position = player.transform.position;
         input = true;
     }
-
-    //IEnumerator moveRightUp()
-    //{
-    //    for (int i = 0; i < (90 / (step / 2f)); i++)
-    //    {
-    //        Physics.gravity = new Vector3(0, 0, 0);
-    //        player.transform.RotateAround(rightUp.transform.position, Vector3.back, step);
-    //        yield return new WaitForSeconds(speed * 2f);
-    //    }
-    //    Physics.gravity = gravity;
-    //    center.transform.position = player.transform.position;
-    //    input = true;
-    //}
 
     public void CheckChangePosition()
     {
