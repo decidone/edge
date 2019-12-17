@@ -39,10 +39,12 @@ public class Btn1_Press : MonoBehaviour
     {
         Vector3 diff;
         diff = after - before;
+        yield return new WaitForSeconds(0.5f);
+
         for (int i = 0; i < time; i++)
         {
             blocks.transform.position
-                = new Vector3(blocks.transform.position.x, blocks.transform.position.y + (diff.y / time), blocks.transform.position.z + (diff.z / time));
+                = new Vector3(blocks.transform.position.x, blocks.transform.position.y, blocks.transform.position.z + (diff.z / time));
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -53,6 +55,12 @@ public class Btn1_Press : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+        for (int i = 0; i < time; i++)
+        {
+            blocks.transform.position
+                = new Vector3(blocks.transform.position.x, blocks.transform.position.y + (diff.y / time), blocks.transform.position.z);
+            yield return new WaitForSeconds(0.01f);
+        }
         //blocks.transform.position = after;
 
     }

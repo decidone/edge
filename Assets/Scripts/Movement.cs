@@ -41,12 +41,18 @@ public class Movement : MonoBehaviour
     {
         CheckChangePosition();
         CheckUnderBlock(center.transform.position + new Vector3(0, -1.2f, 0), 0.1f);
-
+        
         if (input == true)
         {
             center.transform.position = player.transform.position;
         }
     }
+
+    //void PlayerPosFix()
+    //{
+    //    player.transform.position
+    //        = new Vector3(Mathf.Round(player.transform.position.x), player.transform.position.y, Mathf.Round(player.transform.position.z));
+    //}
 
     void CheckUnderBlock(Vector3 centerPoint, float radius)
     {
@@ -58,7 +64,7 @@ public class Movement : MonoBehaviour
         }
         while (i < Colliders.Length)
         {
-            // Debug.Log(Colliders[i].tag);
+            Debug.Log(Colliders[i].tag);
             if(Colliders[i].tag == "Wall")
             {
                 isFloating = false;
@@ -113,6 +119,7 @@ public class Movement : MonoBehaviour
     {
         if (input == true && isFloating == false && ismoving == false)
         {
+            
             if (Input.GetKey(KeyCode.UpArrow)){
                 // 동시 키입력을 방지하기 위해 한번 더 input을 체크
                 if(input == true)
