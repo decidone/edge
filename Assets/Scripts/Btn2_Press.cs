@@ -18,22 +18,37 @@ public class Btn2_Press : MonoBehaviour
     {
 
     }
-
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             if (ispressed == false)
             {
                 transform.position = new Vector3(transform.position.x, 0.26f, transform.position.z);
 
-                StartCoroutine(MovingBlocks(collision.gameObject, blocks.transform.position, new Vector3(blocks.transform.position.x + 4,
+                StartCoroutine(MovingBlocks(other.gameObject, blocks.transform.position, new Vector3(blocks.transform.position.x + 4,
                     blocks.transform.position.y + 2, blocks.transform.position.z - 2), 30));
 
                 ispressed = true;
             }
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        if (ispressed == false)
+    //        {
+    //            transform.position = new Vector3(transform.position.x, 0.26f, transform.position.z);
+
+    //            StartCoroutine(MovingBlocks(collision.gameObject, blocks.transform.position, new Vector3(blocks.transform.position.x + 4,
+    //                blocks.transform.position.y + 2, blocks.transform.position.z - 2), 30));
+
+    //            ispressed = true;
+    //        }
+    //    }
+    //}
 
     // 플레이어가 같이 움직임
     IEnumerator MovingBlocks(GameObject player, Vector3 before, Vector3 after, int time)
