@@ -27,9 +27,8 @@ public class Btn1_Press : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, 0.26f, transform.position.z);
 
-                StartCoroutine(MovingBlocks(blocks.transform.position, new Vector3(blocks.transform.position.x + 2,
-                    blocks.transform.position.y, blocks.transform.position.z), 30));
-
+                StartCoroutine(MovingBlocks(blocks.transform.position, new Vector3(blocks.transform.position.x - 4,
+                    blocks.transform.position.y, blocks.transform.position.z + 4), 30));
                 ispressed = true;
             }
         }
@@ -43,11 +42,18 @@ public class Btn1_Press : MonoBehaviour
         for (int i = 0; i < time; i++)
         {
             blocks.transform.position
-                = new Vector3(blocks.transform.position.x + (diff.x / time), blocks.transform.position.y + (diff.y / time), blocks.transform.position.z + (diff.z / time));
+                = new Vector3(blocks.transform.position.x, blocks.transform.position.y + (diff.y / time), blocks.transform.position.z + (diff.z / time));
             yield return new WaitForSeconds(0.01f);
         }
-        
+
+        for (int i = 0; i < time; i++)
+        {
+            blocks.transform.position
+                = new Vector3(blocks.transform.position.x + (diff.x / time), blocks.transform.position.y, blocks.transform.position.z);
+            yield return new WaitForSeconds(0.01f);
+        }
+
         //blocks.transform.position = after;
-        
+
     }
 }
